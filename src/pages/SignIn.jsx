@@ -1,26 +1,59 @@
 import React from "react";
+import { useSignin } from "../hooks/user/useSignIn";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
+  const { signin } = useSignin();
+  const HandleSignIn = (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    signin(email, password);
+    
+  };
+
   return (
     <>
-      <div className="flex justify-center items-center w-[100vw] h-[100vh] bg-gray-100">
-        <div className="flex flex-col bg-teal-200 w-[75vw] h-[60vh] md:w-[50vw] xl:w-[25vw] items-center">
+      <form action="">
+        <div className="flex bg-slate-100 flex-col items-center  h-[100vh] w-[100vw] justify-center">
+          <div className="flex flex-col items-center justify-center h-[50vh] w-[60vw] lg:w-[28vw] shadow-lg rounded-xl bg-slate-50">
+            <div className="font-semibold text-3xl mb-2">Sign In</div>
+
             <div>
-                Sign In 
+              <input
+                className="px-2 h-[5vh] w-[50vw] lg:w-[20vw] border-[1px] lg:border-[2 px] border-black rounded-md m-3 "
+                type="email"
+                placeholder="Email"
+                id="email"
+                required
+              />
             </div>
-          <div>
-            <div className="name">name</div>
-            <div className="email">email</div>
-            <div className="password">password</div>
-          </div>
-          <div>
-            go to signup
-          </div>
-          <div>
-            <button>signin</button>
+            <div>
+              <input
+                className="px-2 h-[5vh] w-[50vw] lg:w-[20vw] border-[1px] lg:border-[2 px] border-black rounded-md "
+                type="password"
+                placeholder="Password"
+                id="password"
+                required
+              />
+            </div>
+
+            <hr className="my-6 w-[80%] border-t-1 border-black" />
+            <div>
+              Don't have an account? <Link to='/signup' className="hover:text-blue-400 text-blue-800 underline">Sign Up</Link>
+            </div>
+            <div>
+              <button
+                className=" bg-slate-300 hover:bg-slate-50 h-[7vh] w-[15vw] lg:w-[10vw] font-bold text-xl m-4 shadow-md rounded-md mt-6"
+                type="submit"
+                onClick={HandleSignIn}
+              >
+                Sign In
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 };
