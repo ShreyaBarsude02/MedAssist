@@ -7,7 +7,6 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 app.use(cors());
-let socket;
 
 io.on("connection", (socket) =>{
     const user_id = socket.handshake.query.userId;
@@ -21,6 +20,7 @@ io.on("connection", (socket) =>{
     socket.on("disconnect", () => {
         console.log("user-disconnected", socket.id);
         delete socketUsers[user_id];
-        io.emit("onlineUsers", Object.keys(socketUsers));
       });
 })
+
+export { app, io, server };

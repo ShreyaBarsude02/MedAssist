@@ -1,6 +1,6 @@
 import express from "express";
 import { body } from "express-validator";
-import { signin, signup, logout } from "../controllers/authController.js";
+import { signin, signup, logout } from "../controller/authController.js";
 const router = express.Router();
 
 const signupValidator = [

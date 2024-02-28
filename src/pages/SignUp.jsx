@@ -1,25 +1,20 @@
 import React, {useState } from "react";
 import { useSignup } from "../hooks/user/useSignup";
 import { Link } from "react-router-dom";
-import { useStateManager } from "../zustand/useStateManager";
-import Loading from "../Components/Utils/Loading";
+import { useStateStore } from "../zustand/useStateStore";
+import Spinner from "../components/utils/Spinner";
 
 const SignUp = () => {
   const [gender, setGender] = useState("");
   const { signup } = useSignup();
-  const {loading} = useStateManager()
+  const {loading} = useStateStore()
 
   const HandleSignUp = (e) => {
     e.preventDefault();
     const fullname = document.getElementById("fullname").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const response = signup(fullname, email, password, gender);
-    if (response){
-      document.getElementById("fullname").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("password").value = "";
-    }
+    signup(fullname, email, password, gender);
   };
   return (
     <>
@@ -95,14 +90,15 @@ const SignUp = () => {
             <div>
              Already have an account? <Link to='/signin' className="hover:text-blue-400 text-blue-800 underline">Sign In</Link>
             </div>
-            <div>
-              <button
-                className="bg-slate-300 hover:bg-slate-50 h-[7vh] w-[19vw] lg:w-[10vw] font-bold text-xl m-4 shadow-md rounded-md mt-6"
+            <div className="m-4  mt-6 bg-slate-300 hover:bg-slate-50 h-[7vh] w-[19vw] lg:w-[10vw] rounded-md shadow-md flex justify-center items-center">
+            {!loading ? <button
+                className="font-bold text-xl "
                 type="submit"
                 onClick={HandleSignUp}
               >
                 Sign Up
-              </button>
+              </button>:
+            <Spinner/>}
             </div>
           </div>
         </div>

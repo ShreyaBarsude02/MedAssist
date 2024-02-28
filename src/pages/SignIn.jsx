@@ -1,8 +1,11 @@
 import React from "react";
 import { useSignin } from "../hooks/user/useSignIn";
 import { Link } from "react-router-dom";
+import Spinner from "../components/utils/Spinner";
+import { useStateStore } from "../zustand/useStateStore";
 
 const SignIn = () => {
+  const {loading} = useStateStore()
   const { signin } = useSignin();
   const HandleSignIn = (e) => {
     e.preventDefault();
@@ -15,7 +18,7 @@ const SignIn = () => {
   return (
     <>
       <form action="">
-        <div className="flex bg-slate-100 flex-col items-center  h-[100vh] w-[100vw] justify-center">
+        <div className="flex bg-gray-100 flex-col items-center  h-[100vh] w-[100vw] justify-center">
           <div className="flex flex-col items-center justify-center h-[50vh] w-[60vw] lg:w-[28vw] shadow-lg rounded-xl bg-slate-50">
             <div className="font-semibold text-3xl mb-2">Sign In</div>
 
@@ -42,14 +45,15 @@ const SignIn = () => {
             <div>
               Don't have an account? <Link to='/signup' className="hover:text-blue-400 text-blue-800 underline">Sign Up</Link>
             </div>
-            <div>
-              <button
-                className=" bg-slate-300 hover:bg-slate-50 h-[7vh] w-[15vw] lg:w-[10vw] font-bold text-xl m-4 shadow-md rounded-md mt-6"
+            <div className="bg-slate-300 hover:bg-slate-50 h-[7vh] w-[15vw] lg:w-[10vw]  shadow-md rounded-md mt-6 flex justify-center items-center">
+              {!loading ? <button
+                className=" font-bold text-xl m-4"
                 type="submit"
                 onClick={HandleSignIn}
               >
                 Sign In
               </button>
+              : <Spinner/>}
             </div>
           </div>
         </div>
