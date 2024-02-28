@@ -7,7 +7,7 @@ const Navbar = () => {
     }
   return (
     <>
-        <div className="w-[100vw] h-[7vh]  rounded-b-sm shadow-2xl space-x-4 flex items-center  pr-8 text-xl font-bold justify-between overflow-x-hidden">
+        <div className="w-[100vw] h-[7vh]  rounded-b-sm shadow-2xl space-x-4 flex items-center  pr-8 text-xl font-bold justify-between overflow-x-hidden border ">
         <div>MedAssist</div>
         <div onClick={handleLogoutClick} className="space-x-16 flex bg-slate-400 h-[7vh] w-[12vw] items-center justify-center">
           <Link to="/signin" className="">
