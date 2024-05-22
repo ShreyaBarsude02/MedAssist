@@ -22,3 +22,32 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.env
+.env.*
+
+# Flask
+ml_flask/venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+.installed.cfg
+*.whl
+
+# Virtualenv
+env/
+.venv/
+env.bak/
+venv.bak/
+ml_flask/venv/
+
+# Pyre type checker
+.pyre/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
