@@ -1,14 +1,15 @@
 import toast from "react-hot-toast";
 import validator from "validator";
+import { useStateStore } from "../../zustand/useStateStore";
 
 export const useSendSymptoms = () => {
-    const host = "http://localhost:5000";
-    const {setLoading, setShowPredictions} = useStateStore();
+    const host = "http://localhost:8000";
+    const {setLoading, setShowPredictions, setDiseaseInfo, setDisease, setDoctor, setSpecialist} = useStateStore();
 
     const handleInputErrors = (symptoms) => {
-        if (validator.isEmpty(symptoms)) {
-            toast.error("Enter your symptoms");
-        }}
+      if (!Array.isArray(symptoms) || symptoms.length === 0) {
+        toast.error("Enter your symptoms");
+    }}
 
     const sendSymptoms = async (symptoms) => {
         handleInputErrors(symptoms);
@@ -18,7 +19,8 @@ export const useSendSymptoms = () => {
             const response = await fetch(`${host}/api/prediction/predict`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({symptoms}),
+                credentials: 'include', 
+                body: JSON.stringify({ features: symptoms }),
               });
 
               const data = await response.json();
@@ -26,6 +28,10 @@ export const useSendSymptoms = () => {
 
               if (response.ok) {
                 setShowPredictions(true);
+                setDisease(data.disease);
+                setDiseaseInfo(data.disease_info);
+                setDoctor(data.ecrolledDoctor);
+                setSpecialist(data.doctor);
               }
         }catch (error) {
             console.error(error);

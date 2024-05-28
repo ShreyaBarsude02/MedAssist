@@ -1,8 +1,8 @@
 import { validationResult } from "express-validator";
 import fetch from "node-fetch"
-import doctor_vs_disease from "../disease_data/doctor_vs_disease.json"
+import doctor_vs_disease from "../disease_data/doctor_vs_disease.json" assert { type: "json" };
 import Doctor from "../models/doctorModel.js";
-import diseaseInfo from "../disease_data/disease_info.json"
+import diseaseInfo from "../disease_data/disease_info.json" assert { type: "json" };
 
 export const predictDisease = async (req, res) => {
   const errors = validationResult(req);
@@ -24,7 +24,7 @@ export const predictDisease = async (req, res) => {
 
     const doctor = doctor_vs_disease[disease]
 
-    const enrolledDoctor = await Doctor.findOne({ specialization: doctor });
+    let enrolledDoctor = await Doctor.findOne({ specialization: doctor });
 
     const disease_info = diseaseInfo[disease]
 

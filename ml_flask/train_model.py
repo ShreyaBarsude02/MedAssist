@@ -19,12 +19,12 @@ def train_model():
 
     df_combined = pd.concat([df_original[['Disease']], symptom_columns], axis=1)
 
-
     le = LabelEncoder()
     df_combined['Disease'] = le.fit_transform(df_combined['Disease'])
     X = df_combined.drop(columns="Disease")
     y = df_combined['Disease']
 
+    # Assign column names to features
     X.columns = X.columns.astype(str)
 
     base_models = [
@@ -38,9 +38,11 @@ def train_model():
     meta_model = RandomForestClassifier()
     stacking_ensemble = StackingClassifier(estimators=base_models, final_estimator=meta_model)
 
+    # Train the stacking ensemble model
     stacking_ensemble.fit(X, y)
 
-    joblib.dump((stacking_ensemble, symptoms, le), 'model_and_symptoms.joblib')
+    # Save the model along with symptoms and label encoder
+    joblib.dump((stacking_ensemble, X.columns.tolist(), le), 'model_and_symptoms.joblib')
 
 if __name__ == "__main__":
     train_model()
