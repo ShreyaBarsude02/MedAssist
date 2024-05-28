@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useStateStore } from "../../zustand/useStateStore";
 
 export const useSubmitDoctor = () => {
-    const host = "http://localhost:5000"
+    const host = "http://localhost:8000"
     const navigate = useNavigate();
   const {setLoading} = useStateStore();
 
@@ -46,7 +46,7 @@ export const useSubmitDoctor = () => {
               const data = await response.json();
               setLoading(false);
               if (response.ok) {
-                toast.success("Docotr added successfully")
+                toast.success("Docotor added successfully")
                 navigate("/home");
               }
         

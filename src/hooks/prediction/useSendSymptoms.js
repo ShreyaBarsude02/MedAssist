@@ -4,7 +4,7 @@ import { useStateStore } from "../../zustand/useStateStore";
 
 export const useSendSymptoms = () => {
     const host = "http://localhost:8000";
-    const {setLoading, setShowPredictions, setDiseaseInfo, setDisease, setDoctor, setSpecialist} = useStateStore();
+    const {setLoading, setShowPredictions, setDiseaseInfo, setDisease, setDoctor, doctor, setSpecialist} = useStateStore();
 
     const handleInputErrors = (symptoms) => {
       if (!Array.isArray(symptoms) || symptoms.length === 0) {
@@ -30,7 +30,7 @@ export const useSendSymptoms = () => {
                 setShowPredictions(true);
                 setDisease(data.disease);
                 setDiseaseInfo(data.disease_info);
-                setDoctor(data.ecrolledDoctor);
+                setDoctor([...doctor, ...data.enrolledDoctor]);
                 setSpecialist(data.doctor);
               }
         }catch (error) {
