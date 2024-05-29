@@ -30,6 +30,8 @@ export const predictDisease = async (req, res) => {
 
     if(!doctor){
         enrolledDoctor = []
+    }else{
+      enrolledDoctor = [enrolledDoctor]; 
     }
 
     res.status(200).json({ disease, doctor, enrolledDoctor, disease_info });

@@ -4,6 +4,7 @@ import { useSendSymptoms } from "../hooks/prediction/useSendSymptoms";
 import { useStateStore } from "../zustand/useStateStore";
 import Spinner from "../components/utils/Spinner";
 import precautionsData from "../data/precautions.json";
+import { Navigate } from "react-router-dom";
 
 const PredictionPage = () => {
   const [userSymptoms, setUserSymptoms] = useState([]);
@@ -13,12 +14,8 @@ const PredictionPage = () => {
     []
   );
   const { sendSymptoms } = useSendSymptoms();
-  const { loading, showPredictions, setShowPredictions, diseaseInfo, disease, doctor, specialist } =
-    useStateStore();
+  const { loading, showPredictions, setShowPredictions, diseaseInfo, disease, doctor, specialist } =useStateStore();
 
-    useEffect(()=>{
-      console.log(typeof doctor);
-    },[doctor]);
 
   const handleCheckBoxChange = (event) => {
     const { value, checked } = event.target;
@@ -61,6 +58,10 @@ const PredictionPage = () => {
     setSubDropdownOpen({});
     setShowPredictions(false);
   };
+
+  const handleChatButton = (event) => {
+    window.location.href = "https://gochat.oceanoex.com/";
+  }
 
   return (
     <>
@@ -208,18 +209,20 @@ const PredictionPage = () => {
                   )}
                   {doctor && (
                     <div className="">
-                      <span>Our specialist doctors:- </span>
-                      <div className="grid grid-cols-1">
+                      <div className="grid grid-cols-2 gap-x-12 my-4 ">
                         {Array.isArray(doctor) &&
                           doctor.map((doc) => (
                             <div
                               key={doc.name}
-                              className="w-[20vw] bg-purple-100 flex flex-col px-5 py-2 space-y-2"
+                              className="w-[25vw] bg-purple-50 flex flex-col px-9 py-4 space-y-2 rounded-xl shadow-md"
                             >
-                              <div className="flex justify-center">
-                                <span className="font-medium text-lg text-purple-950">
+                              <div className="flex justify-between mb-3">
+                                <span className="pl-20 font-medium text-2xl text-purple-950">
                                   {doc.name}
                                 </span>
+                                <button onClick={handleChatButton} className="bg-purple-200 px-4 py-1 rounded-xl font-medium text-purple-900 hover:bg-purple-300 shadow-md">
+                                  Chat
+                                </button>
                               </div>
                               <div>
                                 <span className="font-medium">Email</span>:{" "}
@@ -247,10 +250,10 @@ const PredictionPage = () => {
                                 </span>
                                 : <span>{doc.specialization}</span>
                               </div>
-                              <div>
+                              {/* <div>
                                 <span className="font-medium">Description</span>
-                                : <span>{doc.description}</span>
-                              </div>
+                                : <span className="text-sm">{doc.description}</span>
+                              </div> */}
                             </div>
                           ))}
                       </div>
