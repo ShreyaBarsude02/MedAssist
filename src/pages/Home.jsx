@@ -19,7 +19,7 @@ const Home = () => {
         <div className="grid md:grid-cols-3 gap-x-14 gap-y-9 mx-20 my-9 ">
           <div className=" bg-slate-50 shadow-lg rounded-md flex flex-col justify-center items-center hover:bg-purple-50 text-justify">
             <div className="heading font-semibold mt-7 my-4 mx-4 text-xl text-purple-900 ">
-              Personalized Medicine Suggestions
+              Prediction of disease
             </div>
             <hr className="mx-3"/>
             <div className="mx-4 my-4">
