@@ -26,14 +26,16 @@ app.use(cors({
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static("/root/MedAssist/dist"));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/doctor", doctorRoutes);
 app.use("/api/prediction", predictionRoutes);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+    const filePath = "/root/MedAssist/dist/index.html";
+    console.log("Serving file:", filePath);
+    res.sendFile(filePath);
 });
 
 app.listen(PORT, () => {
