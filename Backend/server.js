@@ -8,7 +8,7 @@ import predictionRoutes from "./routes/predictionRoutes.js";
 import path from "path"
 import cookieParser from "cookie-parser";
 
-const PORT = 8000;
+const PORT = 6000;
 const __dirname = path.resolve();
 const app = express();
 app.use(express.json({ limit: '100mb' }));
