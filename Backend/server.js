@@ -4,37 +4,39 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
 import predictionRoutes from "./routes/predictionRoutes.js";
-// import {app, server} from './socket/socket.js'
-import path from "path"
+import { fileURLToPath } from "url";
+import path from "path";
 import cookieParser from "cookie-parser";
 
 const PORT = 6000;
-const __dirname = path.resolve();
-const app = express();
-app.use(express.json({ limit: '100mb' }));
-app.use(cookieParser()); 
-app.use(cors({
-	origin: 'http://localhost:5173',
-	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-	allowedHeaders: ['Content-Type', 'Authorization'],
-	credentials: true,
-	optionsSuccessStatus: true
-  }));
-app.use(express.static('public'));
-app.use(express.json({ limit: "100mb" }));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-app.use(express.static("public"));
+const app = express();
+app.use(express.json({ limit: "100mb" }));
+app.use(cookieParser());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 204
+}));
+
 app.use(express.urlencoded({ extended: false }));
+
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "dist")));
+
 app.use("/api/auth", authRoutes);
 app.use("/api/doctor", doctorRoutes);
 app.use("/api/prediction", predictionRoutes);
 
-app.use(express.static(path.join(__dirname, "/dist")));
 app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 app.listen(PORT, () => {
   connectToMongoDB();
-  console.log(`Server Running on port localhost http://localhost:${PORT}`);
+  console.log(`Server Running on http://localhost:${PORT}`);
 });
