@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm install  && npm install --prefix Backend && npm install && npm run build",
+    "build": "npm install  && vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server": "nodemon Backend/server.js",
