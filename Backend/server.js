@@ -6,10 +6,8 @@ import doctorRoutes from "./routes/doctorRoutes.js";
 import predictionRoutes from "./routes/predictionRoutes.js";
 // import {app, server} from './socket/socket.js'
 import path from "path"
-import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
-dotenv.config();
 const PORT = 8000;
 const __dirname = path.resolve();
 const app = express();
