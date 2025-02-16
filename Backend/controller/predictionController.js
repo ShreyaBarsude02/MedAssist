@@ -13,7 +13,7 @@ export const predictDisease = async (req, res) => {
   const features = req.body;
 
   try {
-    const response = await fetch("http://127.0.0.1:5000/predictdisease", {
+    const response = await fetch("http://127.0.0.1:5001/predictdisease", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(features),
