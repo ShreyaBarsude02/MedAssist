@@ -16,7 +16,7 @@ export const useSendSymptoms = () => {
 
         try {
             setLoading(true);
-            const response = await fetch(`${host}/api/prediction/predict`, {
+            const response = await fetch(`/api/prediction/predict`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: 'include', 

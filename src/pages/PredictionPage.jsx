@@ -207,7 +207,9 @@ const PredictionPage = () => {
                       disease
                     </span>
                   )}
-                  {doctor && (
+                  
+                  {doctor && doctor.filter(doc => doc !== null).length > 0 &&  (
+                   
                     <div className="">
                       <div className="grid grid-cols-2 gap-x-12 my-4 ">
                         {Array.isArray(doctor) &&

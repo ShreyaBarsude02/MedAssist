@@ -5,14 +5,12 @@ import Navbar from "../components/utils/Navbar";
 const Home = () => {
   return (
     <>
-     
       <Header />
       <div className="flex items-center mt-4 bg-purple-50">
         <div className=" mx-24 ">
           <div className=" font-thin text-2xl  p-4 flex justify-center ">
             Welcome to MedoDoc - Your Personal Medical Assistant!
           </div>
-          
         </div>
       </div>
       <div>
@@ -21,18 +19,21 @@ const Home = () => {
             <div className="heading font-semibold mt-7 my-4 mx-4 text-xl text-purple-900 ">
               Prediction of disease
             </div>
-            <hr className="mx-3"/>
+            <hr className="mx-3" />
             <div className="mx-4 my-4">
-              Receive personalized recommendations for medicines based on your
-              symptoms and disease description. Explore detailed information
-              about each suggested medicine, including dosage, side effects, and
-              usage instructions. Make informed decisions about your treatment
-              plan with confidence.
+              The disease prediction feature allows patients to enter their
+              symptoms, which the system then analyzes to predict possible
+              diseases. This process involves matching the symptoms against a
+              comprehensive dataset, resulting in a likely diagnosis. The
+              predicted disease is then shared with the patient, along with
+              relevant information and recommended doctors.
             </div>
           </div>
           <div className=" bg-slate-50 shadow-lg rounded-md flex flex-col justify-center items-center hover:bg-purple-50 text-justify">
-            <div className="heading font-semibold my-4 mx-4 text-xl text-purple-900 ">Doctor Suggestions</div>
-             <hr className="mx-3"/>
+            <div className="heading font-semibold my-4 mx-4 text-xl text-purple-900 ">
+              Doctor Suggestions
+            </div>
+            <hr className="mx-3" />
             <div className="mx-4 my-4">
               Discover healthcare professionals specializing in treating
               conditions similar to yours. View detailed profiles of suggested
@@ -42,8 +43,10 @@ const Home = () => {
             </div>
           </div>
           <div className=" bg-slate-50 shadow-lg rounded-md flex flex-col justify-center items-center hover:bg-purple-50 text-justify">
-            <div className="heading font-semibold my-4 mx-4 text-xl text-purple-900 ">Chat with Doctors</div>
-            <hr className="mx-3"/>
+            <div className="heading font-semibold my-4 mx-4 text-xl text-purple-900 ">
+              Chat with Doctors
+            </div>
+            <hr className="mx-3" />
             <div className="mx-4 my-4">
               Connect with healthcare professionals in real-time through our
               secure messaging platform. Ask questions, seek advice, and receive

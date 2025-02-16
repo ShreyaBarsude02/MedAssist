@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useStateStore } from "../../zustand/useStateStore";
 
 export const useSubmitDoctor = () => {
-    const host = "http://localhost:8000"
-    const navigate = useNavigate();
+    // const host = "http://localhost:8000"
+    const navigate = useNavigate(); 
   const {setLoading} = useStateStore();
 
     const handleInputErrors = (name, email, education, experience, specialization, phone, address, description) => {
@@ -38,7 +38,7 @@ export const useSubmitDoctor = () => {
 
         try {
             setLoading(true);
-            const response = await fetch(`${host}/api/doctor/adddoctor`, {
+            const response = await fetch(`/api/doctor/adddoctor`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({name, email, education, experience, specialization, phone, address, description}),
