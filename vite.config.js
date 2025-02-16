@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy:{
       '/api': {
-        target: "https://gochat.oceanoex.com"
+        target: "https://medodoc.oceanoex.com"
       }
     }
   }
