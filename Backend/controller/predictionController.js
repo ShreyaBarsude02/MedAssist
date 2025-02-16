@@ -1,8 +1,14 @@
 import { validationResult } from "express-validator";
 import fetch from "node-fetch"
-import doctor_vs_disease from "../disease_data/doctor_vs_disease.json" assert { type: "json" };
+// import doctor_vs_disease from "../disease_data/doctor_vs_disease.json" assert { type: "json" };
 import Doctor from "../models/doctorModel.js";
-import diseaseInfo from "../disease_data/disease_info.json" assert { type: "json" };
+// import diseaseInfo from "../disease_data/disease_info.json" assert { type: "json" };
+
+import fs from "fs";
+
+const doctor_vs_disease = JSON.parse(fs.readFileSync(new URL("../disease_data/doctor_vs_disease.json", import.meta.url)));
+const diseaseInfo = JSON.parse(fs.readFileSync(new URL("../disease_data/disease_info.json", import.meta.url)));
+
 
 export const predictDisease = async (req, res) => {
   const errors = validationResult(req);
